@@ -23,8 +23,8 @@ def multi_type_roll(user_input):
         ndice,nsides = rolls[i].split('d')
         dice = roll_dice(nsides, ndice)
         sumdice += sum([int(i) for i in dice])
-        await ctx.send("{}: {}".format(rolls[i],', '.join(dice)))
-    await ctx.send("Total = {}".format(sumdice))
+        #await ctx.send("{}: {}".format(rolls[i],', '.join(dice)))
+    #await ctx.send("Total = {}".format(sumdice))
     return sumdice
 
 def single_type_roll(user_input):
@@ -32,9 +32,9 @@ def single_type_roll(user_input):
     dice = roll_dice(nsides, ndice)
     sumdice = sum([int(i) for i in dice])
     if len(dice) > 1:
-        await ctx.send("{} \nTotal = {}".format(', '.join(dice),sumdice))
+        #await ctx.send("{} \nTotal = {}".format(', '.join(dice),sumdice))
     else:
-        await ctx.send(dice[0])
+        #await ctx.send(dice[0])
     return sumdice
 
 @bot.command(name='roll', help="Dice are being thrown!\nUse format <numberofdice>d<numberofsides>. EX: !roll 2d6 rolls two six sided dice.\nFor multiple dice, separate them with the word 'and'. EX: !roll 2d6 and 3d4 rolls two six sided dice and three four sided dice.")
