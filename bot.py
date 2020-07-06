@@ -9,7 +9,7 @@ TOKEN = os.getenv('DISCORD_TOKEN')
 
 bot = commands.Bot(command_prefix='!')
 
-def rolldice(nsides, ndice):
+def roll_dice(nsides, ndice):
     dice = [
         str(random.choice(range(1, int(nsides) + 1)))
         for _ in range(int(ndice))     
