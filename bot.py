@@ -1,9 +1,13 @@
 # bot.py
 import os
 import random
+import dotenv
 
 import discord
 from discord.ext import commands
+from dotenv import load_dotenv
+
+load_dotenv()
 
 TOKEN = os.getenv('DISCORD_TOKEN')
 
@@ -31,12 +35,10 @@ def single_type_roll(user_input):
     ndice,nsides = user_input.split('d')
     dice = roll_dice(nsides, ndice)
     sumdice = sum([int(i) for i in dice])
-    '''
     if len(dice) > 1:
         await ctx.send("{} \nTotal = {}".format(', '.join(dice),sumdice))
     else:
         await ctx.send(dice[0])
-    '''
     return sumdice
 
 @bot.command(name='roll', help="Dice are being thrown!\nUse format <numberofdice>d<numberofsides>. EX: !roll 2d6 rolls two six sided dice.\nFor multiple dice, separate them with the word 'and'. EX: !roll 2d6 and 3d4 rolls two six sided dice and three four sided dice.")
