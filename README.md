@@ -12,7 +12,7 @@ Examples:\
 ## File Structure
 `bot.py` contains bot commands, and their logic.\
 `roll_mechanics.py` is a module containing dice-rolling logic, specifically.\
-`Procfile` and `requirements` contain things for Heroku; process types and dependencies, respectively.
+`Procfile` and `requirements.txt` contain things for Heroku; process types and dependencies, respectively.
 
 ## Contributing
 Pull requests are welcome. Make them against development. If you have a feature you'd like to add, please feel free to do so.
