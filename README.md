@@ -10,7 +10,7 @@ Examples:\
 `!roll 1d20 with advantage` rolls one twenty sided dice with advantage (twice, keep the highest).\
 
 ## File Structure
-`bot.py` contains and bot commands, and their logic.\
+`bot.py` contains bot commands, and their logic.\
 `roll_mechanics.py` is a module containing dice-rolling logic, specifically.\
 `procfile` and `requirements` contain things for Heroku; process types and dependencies, respectively.\
 
