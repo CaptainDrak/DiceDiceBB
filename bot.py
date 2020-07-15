@@ -9,7 +9,7 @@ TOKEN = os.getenv('DISCORD_TOKEN')
 
 bot = commands.Bot(command_prefix='!')
 
-@bot.command(name='roll', help="Dice are being thrown!\nUse format <numberofdice>d<numberofsides>. EX: !roll 2d6 rolls two six sided dice.\nFor multiple dice, separate them with the word 'and'. EX: !roll 2d6 and 3d4 rolls two six sided dice and three four sided dice.")
+@bot.command(name='roll', help="Dice are being thrown!\nUse format <numberofdice>d<numberofsides>. EX: `!roll 2d6` rolls two six sided dice.\nFor multiple dice types, separate them with the word 'and'. EX: `!roll 2d6 and 3d4` rolls two six sided dice and three four sided dice.\nFor advantage or disadvantage, you can add the phrases `with advantage`, `w/ advantage`, `adv`, `with disadvantage`, `w/ disadvantage` or `dis`. EX: `!roll 1d20 adv` rolls two twenty sided dice, and keeps the highest value.  ")
 async def roll(ctx, *user_input):
     user_input = ' '.join(user_input)
     flags = [
