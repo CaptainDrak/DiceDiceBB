@@ -12,8 +12,24 @@ bot = commands.Bot(command_prefix='!')
 @bot.command(name='roll', help="Dice are being thrown!\nUse format <numberofdice>d<numberofsides>. EX: !roll 2d6 rolls two six sided dice.\nFor multiple dice, separate them with the word 'and'. EX: !roll 2d6 and 3d4 rolls two six sided dice and three four sided dice.")
 async def roll(ctx, *user_input):
     user_input = ' '.join(user_input)
-    advantage = 'with advantage' in user_input
-    user_input = user_input.replace('with advantage', '')
+    flags = [
+            'with disadvantage', 
+            'w/ disadvantage', 
+            'with dis',
+            'w/ dis', 
+            'dis',
+            'with advantage', 
+            'w/ advantage', 
+            'with adv',
+            'w/ adv', 
+            'adv'
+            ]
+    advantage = disadvantage = False
+    if any(i in user_input for i in flags[0:5]):
+        disadvantage = True
+    elif any(i in user_input for i in flags[5:10]):
+        advantage = True
+    for i in range(len(flags)): user_input = user_input.replace(flags[i], '')
     if 'and' in user_input:
         if advantage is True:
             sums = []
@@ -22,6 +38,13 @@ async def roll(ctx, *user_input):
                 sums.append(this_roll[0])
                 await ctx.send(this_roll[1])
             await ctx.send('Total with advantage = {}'.format(max(sums)))
+        elif disadvantage is True:
+            sums = []
+            for _ in range(2):
+                this_roll = roll_mechanics.multi_type_roll(user_input)
+                sums.append(this_roll[0])
+                await ctx.send(this_roll[1])
+            await ctx.send('Total with disadvantage = {}'.format(min(sums)))
         else:
             this_roll = roll_mechanics.multi_type_roll(user_input)
             await ctx.send(this_roll[1])
@@ -34,6 +57,13 @@ async def roll(ctx, *user_input):
                 sums.append(this_roll[0])
                 await ctx.send(this_roll[1])
             await ctx.send(f'Total with advantage = {max(sums)}')
+        elif disadvantage is True:
+            sums = []
+            for _ in range(2):
+                this_roll = roll_mechanics.single_type_roll(user_input)
+                sums.append(this_roll[0])
+                await ctx.send(this_roll[1])
+            await ctx.send('Total with disadvantage = {}'.format(min(sums)))
         else:
             this_roll = roll_mechanics.single_type_roll(user_input)
             await ctx.send(this_roll[1])
