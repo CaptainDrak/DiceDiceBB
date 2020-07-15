@@ -7,7 +7,7 @@ def roll_dice(nsides, ndice):
     ]
     return dice
 
-def multi_type_roll(user_input):
+def multi_type_roll(user_input, sender):
     rolls=user_input.replace(' ','').split('and')
     sumdice=0
     messages=""
@@ -19,11 +19,11 @@ def multi_type_roll(user_input):
         messages = messages + (f"{rolls[i]}: {', '.join(dice)}\n")
         print(f"Message to be returned to roll request: {messages}")
     print(f"Total = {sumdice}")
-    messages = messages + (f"Total = {sumdice}")
+    messages = messages + (f"{sender}'s total = {sumdice}")
     print(f"Message to be returned to roll request: {messages}")
     return sumdice, messages
 
-def single_type_roll(user_input):
+def single_type_roll(user_input, sender):
     print(user_input)
     messages=""
     ndice,nsides = user_input.split('d')
@@ -31,8 +31,8 @@ def single_type_roll(user_input):
     sumdice = sum([int(i) for i in dice])
     if len(dice) > 1:
         print(f"{', '.join(dice)} \nTotal = {sumdice}")
-        messages = messages + (f"{', '.join(dice)} \nTotal = {sumdice}")
+        messages = messages + (f"{', '.join(dice)} \n{sender}'s total = {sumdice}")
     else:
         print(f"Total = {dice[0]}")
-        messages = messages + (f"Total = {dice[0]}\n")
+        messages = messages + (f"{sender}'s total = {dice[0]}\n")
     return sumdice, messages
